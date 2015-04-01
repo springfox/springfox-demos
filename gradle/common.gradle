@@ -1,0 +1,15 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+  }
+}
+
+repositories {
+  jcenter()
+  maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+}
+
