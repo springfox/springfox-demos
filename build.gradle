@@ -1,0 +1,19 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath "com.github.adrianbk:gradle-jvmsrc-plugin:0.6.1"
+  }
+}
+
+subprojects {
+    apply plugin: 'com.github.adrianbk.jvmsrc'
+    apply plugin: 'com.github.adrianbk.jvmsrc'
+    
+    jvmsrc {
+        packageName "springfoxdemo"
+    }
+    apply plugin: 'java'
+}

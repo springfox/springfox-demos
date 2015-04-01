@@ -1,0 +1,1 @@
+apply from: "$rootDir/gradle/spring-booter.gradle"
