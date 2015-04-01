@@ -23,6 +23,9 @@ apply plugin: 'idea'
 dependencies {
 
   compile 'io.springfox:springfox-petstore:2.0.0-SNAPSHOT'
+  compile 'io.springfox:springfox-schema:2.0.0-SNAPSHOT'
+  compile 'io.springfox:springfox-spring-web:2.0.0-SNAPSHOT'
+  compile 'io.springfox:springfox-swagger-common:2.0.0-SNAPSHOT'
   compile 'io.springfox:springfox-swagger2:2.0.0-SNAPSHOT'
   compile 'io.springfox:springfox-swagger-ui:2.0.0-SNAPSHOT' //http://localhost:8080/swagger2/sdoc.jsp
   compile "org.webjars:jquery:2.1.1" //http://localhost:8080/swagger2/webjars/jquery/2.1.1/jquery.min.js
