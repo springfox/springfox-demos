@@ -13,6 +13,11 @@ repositories {
   maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
 }
 
+configurations {
+  provided
+  compile.extendsFrom provided
+}
+
 dependencies {
   compile("org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE")
 }
@@ -21,6 +26,8 @@ apply plugin: 'spring-boot'
 apply plugin: 'idea'
 
 dependencies {
+  provided 'org.apache.tomcat.embed:tomcat-embed-jasper:8.0.21'
+  provided 'javax.servlet:jstl:1.2'
 
   compile 'io.springfox:springfox-petstore:2.0.0-SNAPSHOT'
   compile 'io.springfox:springfox-schema:2.0.0-SNAPSHOT'
