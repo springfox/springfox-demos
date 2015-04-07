@@ -9,10 +9,16 @@ buildscript {
 }
 
 subprojects {
-    apply plugin: 'com.github.adrianbk.jvmsrc'
+  apply plugin: 'com.github.adrianbk.jvmsrc'
 
-    jvmsrc {
-        packageName "springfoxdemo"
-    }
-    apply plugin: 'java'
+  jvmsrc {
+    packageName "springfoxdemo"
+  }
+  apply plugin: 'java'
+
+
+  configurations.all {
+    //Dont cache snapshots
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+  }
 }
