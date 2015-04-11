@@ -1,4 +1,4 @@
-package springfoxdemo.swagger2;
+package springfoxdemo.boot.swagger;
 
 import com.google.common.base.Predicate;
 import org.springframework.boot.SpringApplication;
