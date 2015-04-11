@@ -18,6 +18,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.annotations.EnableSwagger;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import springfox.petstore.controller.PetController;
+import springfoxdemo.boot.swagger.web.HomeController;
 
 import static com.google.common.base.Predicates.or;
 import static com.google.common.collect.Lists.newArrayList;
@@ -28,6 +29,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @EnableSwagger2 //Enable swagger 2.0 spec
 @ComponentScan(basePackageClasses = {
         PetController.class,
+        HomeController.class
 })
 public class Application {
     public static void main(String[] args) {
