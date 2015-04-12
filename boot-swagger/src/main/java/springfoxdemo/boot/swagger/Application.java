@@ -15,7 +15,7 @@ import springfox.documentation.service.SecurityReference;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger.annotations.EnableSwagger;
+import springfox.documentation.swagger1.annotations.EnableSwagger;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import springfox.petstore.controller.PetController;
 import springfoxdemo.boot.swagger.web.HomeController;

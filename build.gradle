@@ -16,7 +16,6 @@ subprojects {
   }
   apply plugin: 'java'
 
-
   configurations.all {
     //Dont cache snapshots
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
