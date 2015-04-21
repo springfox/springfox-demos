@@ -16,6 +16,9 @@ ext {
           springfoxSwagger2: [
                   "io.springfox:springfox-swagger2:${springfoxVersion}"
           ],
+          springfoxSwaggerUi: [
+                  "io.springfox:springfox-swagger-ui:${springfoxVersion}"
+          ],
           jackson          : [
                   "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}",
                   "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"

@@ -9,4 +9,6 @@ dependencies {
   compile libs.jackson
   compile libs.springfoxPetstore
   compile libs.springfoxSwagger2
+  compile libs.springfoxSwaggerUi
+
 }
