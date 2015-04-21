@@ -3,6 +3,6 @@ package springfoxdemo.java.swagger;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
-public class SwaggerConfig {
+public class SwaggerConfiguration {
 
 }
