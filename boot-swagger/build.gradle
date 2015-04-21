@@ -8,16 +8,6 @@ buildscript {
   }
 }
 
-repositories {
-  jcenter()
-  maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
-}
-
-configurations {
-  provided
-  compile.extendsFrom provided
-}
-
 dependencies {
   compile("org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE")
 }
@@ -26,8 +16,8 @@ apply plugin: 'spring-boot'
 apply plugin: 'idea'
 
 dependencies {
-  compile 'io.springfox:springfox-petstore:2.0.0-SNAPSHOT'
-  compile 'io.springfox:springfox-swagger1:2.0.0-SNAPSHOT'
-  compile 'io.springfox:springfox-swagger2:2.0.0-SNAPSHOT'
-  compile 'io.springfox:springfox-swagger-ui:2.0.0-SNAPSHOT'
+  compile libs.springfoxPetstore
+  compile libs.springfoxSwagger2
+  compile "io.springfox:springfox-swagger1:${springfoxVersion}"
+  compile "io.springfox:springfox-swagger-ui:${springfoxVersion}"
 }

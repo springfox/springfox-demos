@@ -1,0 +1,24 @@
+ext {
+  spring = "4.1.6.RELEASE"
+  springfoxVersion = '2.0.0-SNAPSHOT'
+  jacksonVersion = '2.5.2'
+  libs = [
+
+          spring           : [
+                  "org.springframework:spring-core:$spring",
+                  "org.springframework:spring-web:$spring",
+                  "org.springframework:spring-webmvc:$spring"
+
+          ],
+          springfoxPetstore: [
+                  "io.springfox:springfox-petstore:${springfoxVersion}"
+          ],
+          springfoxSwagger2: [
+                  "io.springfox:springfox-swagger2:${springfoxVersion}"
+          ],
+          jackson          : [
+                  "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}",
+                  "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+          ]
+  ]
+}
