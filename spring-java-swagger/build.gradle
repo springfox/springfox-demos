@@ -1,0 +1,14 @@
+plugins {
+  id "org.akhikhl.gretty" version "1.2.0"
+}
+
+apply plugin: 'war'
+
+dependencies {
+  compile libs.spring
+  compile libs.jackson
+  compile libs.springfoxPetstore
+  compile libs.springfoxSwagger2
+  compile libs.springfoxSwaggerUi
+
+}
