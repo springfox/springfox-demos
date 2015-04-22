@@ -1,5 +1,6 @@
 package springfoxdemo.staticdocs
 
+import groovy.io.FileType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.SpringApplicationContextLoader
 import org.springframework.http.MediaType
@@ -16,14 +17,15 @@ import springfox.documentation.staticdocs.Swagger2MarkupResultHandler
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import static springfox.documentation.staticdocs.Swagger2MarkupResultHandler.convertIntoFolder
 
 @ActiveProfiles("swagger")
 @ContextConfiguration(
-        loader = SpringApplicationContextLoader, classes = Application)
+        loader = SpringApplicationContextLoader,
+        classes = Application)
 @WebAppConfiguration
 @TestExecutionListeners([DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener])
 class StaticDocsTest extends spock.lang.Specification {
-
 
   @Autowired
   WebApplicationContext context;
@@ -32,16 +34,24 @@ class StaticDocsTest extends spock.lang.Specification {
 
   def setup() {
     this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build()
-//            .apply(new RestDocumentationConfigurer()).build();
   }
 
 
-  def "generates the petstore aip asciidoc"() {
-    expect:
-      Swagger2MarkupResultHandler resultHandler = Swagger2MarkupResultHandler.convertIntoFolder("swagger_adoc").build()
+  def "generates the petstore api asciidoc"() {
+    setup:
+      Swagger2MarkupResultHandler resultHandler = convertIntoFolder("swagger_adoc").build()
 
+    when:
       this.mockMvc.perform(get("/v2/api-docs").accept(MediaType.APPLICATION_JSON))
               .andDo(resultHandler)
               .andExpect(status().isOk())
+    then:
+
+      def list = []
+      def dir = new File(resultHandler.outputDir)
+      dir.eachFileRecurse(FileType.FILES) { file ->
+        list << file.name
+      }
+      list.sort() == ['definitions.adoc', 'overview.adoc', 'paths.adoc']
   }
 }

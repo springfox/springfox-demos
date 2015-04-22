@@ -31,6 +31,6 @@ subprojects {
 
   configurations.all {
     //Dont cache snapshots
-    resolutionStrategy.cacheChangingModulesFor 3600, 'seconds'
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
   }
 }
