@@ -1,4 +1,6 @@
 rootProject.name = 'springfox-demos'
 include 'boot-swagger'
+include 'boot-swagger'
+include 'boot-static-docs'
 include 'spring-xml-swagger'
 include 'spring-java-swagger'

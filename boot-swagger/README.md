@@ -3,7 +3,7 @@ A spring boot application with both swagger 1.2 and 2.0 api documentation enable
  - Demonstrates using swagger groups 
 
 ```
-./gradlew bootRun
+./gradlew boot-swagger:bootRun
 ```
 
 ## Paths

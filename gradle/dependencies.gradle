@@ -1,27 +1,46 @@
 ext {
-  spring = "4.1.6.RELEASE"
+  springVersion = "4.1.6.RELEASE"
+  springBootVersion = "1.2.3.RELEASE"
   springfoxVersion = '2.0.0-SNAPSHOT'
   jacksonVersion = '2.5.2'
+  groovy = "2.4.3"
+  spock = "1.0-groovy-2.4"
+
   libs = [
 
-          spring           : [
-                  "org.springframework:spring-core:$spring",
-                  "org.springframework:spring-web:$spring",
-                  "org.springframework:spring-webmvc:$spring"
+          spring            : [
+                  "org.springframework:spring-core:$springVersion",
+                  "org.springframework:spring-web:$springVersion",
+                  "org.springframework:spring-webmvc:$springVersion"
 
           ],
-          springfoxPetstore: [
+          springBoot        : [
+                  "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+          ],
+
+          springfoxPetstore : [
                   "io.springfox:springfox-petstore:${springfoxVersion}"
           ],
-          springfoxSwagger2: [
+          springfoxSwagger2 : [
                   "io.springfox:springfox-swagger2:${springfoxVersion}"
           ],
           springfoxSwaggerUi: [
                   "io.springfox:springfox-swagger-ui:${springfoxVersion}"
           ],
-          jackson          : [
+          jackson           : [
                   "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}",
                   "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-          ]
+          ],
+          test              : [
+                  "org.codehaus.groovy:groovy-all:${groovy}",
+                  "org.spockframework:spock-spring:${spock}",
+                  "org.spockframework:spock-core:${spock}",
+                  "org.springframework:spring-test:${springVersion}",
+                  "cglib:cglib-nodep:3.1",
+                  "org.objenesis:objenesis:2.1"
+          ],
+          springfoxStaticDocs: [
+                  "io.springfox:springfox-staticdocs:${springfoxVersion}"
+          ],
   ]
 }

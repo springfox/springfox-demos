@@ -1,0 +1,28 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+  }
+}
+
+apply plugin: 'spring-boot'
+apply plugin: 'idea'
+apply plugin: 'groovy'
+
+dependencies {
+  compile libs.springBoot
+  compile libs.springfoxPetstore
+  compile libs.springfoxSwagger2
+  compile libs.springfoxSwaggerUi
+  testCompile libs.test
+  testCompile libs.springfoxStaticDocs
+}
+
+tasks.withType(org.springframework.boot.gradle.run.BootRunTask) {
+  def springProfile = project.hasProperty('springProfile') ? project.property('springProfile') : ''
+  logger.quiet("Setting spring.profiles.active to: ${springProfile}")
+  systemProperty('spring.profiles.active', springProfile)
+}
