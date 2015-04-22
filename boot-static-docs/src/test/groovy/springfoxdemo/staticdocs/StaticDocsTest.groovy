@@ -18,8 +18,6 @@ import springfox.documentation.staticdocs.Swagger2MarkupResultHandler
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import static springfox.documentation.staticdocs.Swagger2MarkupResultHandler.convertIntoFolder
-
-@ActiveProfiles("swagger")
 @ContextConfiguration(
         loader = SpringApplicationContextLoader,
         classes = Application)
@@ -46,7 +44,6 @@ class StaticDocsTest extends spock.lang.Specification {
               .andDo(resultHandler)
               .andExpect(status().isOk())
     then:
-
       def list = []
       def dir = new File(resultHandler.outputDir)
       dir.eachFileRecurse(FileType.FILES) { file ->

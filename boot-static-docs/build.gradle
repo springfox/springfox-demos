@@ -5,12 +5,15 @@ buildscript {
 
   dependencies {
     classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+    classpath "org.asciidoctor:asciidoctor-gradle-plugin:1.5.2"
+    classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.6'
   }
 }
 
 apply plugin: 'spring-boot'
 apply plugin: 'idea'
 apply plugin: 'groovy'
+apply plugin: "org.asciidoctor.convert"
 
 dependencies {
   compile libs.springBoot
@@ -21,8 +24,11 @@ dependencies {
   testCompile libs.springfoxStaticDocs
 }
 
-tasks.withType(org.springframework.boot.gradle.run.BootRunTask) {
-  def springProfile = project.hasProperty('springProfile') ? project.property('springProfile') : ''
-  logger.quiet("Setting spring.profiles.active to: ${springProfile}")
-  systemProperty('spring.profiles.active', springProfile)
+asciidoctor {
+  sourceDir = file("${project.buildDir}/asciidoc/generated/swagger_adoc")
+//  logDocuments = true
+//  separateOutputDirs = false
+  backends = ['html5', 'pdf']
 }
+
+asciidoctor.dependsOn test
