@@ -7,7 +7,7 @@ __Experimental__
 - The [asciidoctor-gradle-plugin](https://github.com/asciidoctor/asciidoctor-gradle-plugin) to generate pdf and html asciidoctor docs.
  
  
-To generate the asciidoctor documantation run:
+To generate the asciidoctor documentation run:
  
 ```bash
 ./gradlew boot-static-docs:asciidoctor

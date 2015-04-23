@@ -4,7 +4,6 @@ import groovy.io.FileType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.SpringApplicationContextLoader
 import org.springframework.http.MediaType
-import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.TestExecutionListeners
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener
@@ -17,7 +16,7 @@ import springfox.documentation.staticdocs.Swagger2MarkupResultHandler
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import static springfox.documentation.staticdocs.Swagger2MarkupResultHandler.convertIntoFolder
+
 @ContextConfiguration(
         loader = SpringApplicationContextLoader,
         classes = Application)
@@ -37,7 +36,10 @@ class StaticDocsTest extends spock.lang.Specification {
 
   def "generates the petstore api asciidoc"() {
     setup:
-      Swagger2MarkupResultHandler resultHandler = convertIntoFolder("swagger_adoc").build()
+      String outDir = System.getProperty('asciiDocOutputDir', 'build/aciidoc')
+      Swagger2MarkupResultHandler resultHandler = Swagger2MarkupResultHandler
+              .outputDirectory(outDir)
+              .build()
 
     when:
       this.mockMvc.perform(get("/v2/api-docs").accept(MediaType.APPLICATION_JSON))

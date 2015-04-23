@@ -24,11 +24,13 @@ dependencies {
   testCompile libs.springfoxStaticDocs
 }
 
+def targetDocDir = "${project.buildDir}/asciidoc/generated/swagger_adoc"
+test {
+  systemProperty "asciiDocOutputDir", targetDocDir
+}
+asciidoctor.dependsOn test
+
 asciidoctor {
-  sourceDir = file("${project.buildDir}/asciidoc/generated/swagger_adoc")
-//  logDocuments = true
-//  separateOutputDirs = false
+  sourceDir = file(targetDocDir)
   backends = ['html5', 'pdf']
 }
-
-asciidoctor.dependsOn test
