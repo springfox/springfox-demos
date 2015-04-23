@@ -34,3 +34,7 @@ subprojects {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
   }
 }
+
+wrapper {
+  gradleVersion = "2.4-rc-1"
+}
