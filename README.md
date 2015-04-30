@@ -1,5 +1,5 @@
 # springfox-demos
-Springox demo applications 
+Springfox demo applications 
 
 
 #IDE
