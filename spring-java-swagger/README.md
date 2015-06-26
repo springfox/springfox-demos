@@ -1,4 +1,4 @@
-## spring-java-swaggwer
+## spring-java-swagger
 An java configured spring web mvc app with Swagger2 and Swagger UI
 
 ### Running
