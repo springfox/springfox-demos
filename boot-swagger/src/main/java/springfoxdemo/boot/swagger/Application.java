@@ -18,20 +18,22 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger1.annotations.EnableSwagger;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import springfox.petstore.controller.PetController;
+import springfoxdemo.boot.swagger.web.FileUploadController;
 import springfoxdemo.boot.swagger.web.HomeController;
 
 import java.util.ArrayList;
 
-import static com.google.common.base.Predicates.or;
-import static com.google.common.collect.Lists.newArrayList;
-import static springfox.documentation.builders.PathSelectors.regex;
+import static com.google.common.base.Predicates.*;
+import static com.google.common.collect.Lists.*;
+import static springfox.documentation.builders.PathSelectors.*;
 
 @SpringBootApplication
 @EnableSwagger //Enable swagger 1.2 spec
 @EnableSwagger2 //Enable swagger 2.0 spec
 @ComponentScan(basePackageClasses = {
         PetController.class,
-        HomeController.class
+        HomeController.class,
+        FileUploadController.class
 })
 public class Application {
     public static void main(String[] args) {
@@ -49,6 +51,20 @@ public class Application {
     }
 
     @Bean
+    public Docket multipartApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("multipart-api")
+                .apiInfo(apiInfo())
+                .select()
+                .paths(multipartPaths())
+                .build();
+    }
+
+    private Predicate<String> multipartPaths() {
+        return regex("/upload.*");
+    }
+
+    @Bean
     public Docket userApi() {
         AuthorizationScope[] authScopes = new AuthorizationScope[1];
         authScopes[0] = new AuthorizationScopeBuilder()
@@ -60,7 +76,8 @@ public class Application {
                 .scopes(authScopes)
                 .build();
 
-        ArrayList<SecurityContext> securityContexts = newArrayList(SecurityContext.builder().securityReferences(newArrayList(securityReference)).build());
+        ArrayList<SecurityContext> securityContexts = newArrayList(SecurityContext.builder().securityReferences
+                (newArrayList(securityReference)).build());
         return new Docket(DocumentationType.SWAGGER_2)
                 .securitySchemes(newArrayList(new BasicAuth("test")))
                 .securityContexts(securityContexts)
@@ -92,7 +109,8 @@ public class Application {
         return new ApiInfoBuilder()
                 .title("Springfox petstore API")
                 .description("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum " +
-                        "has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a " +
+                        "has been the industry's standard dummy text ever since the 1500s, when an unknown printer "
+                        + "took a " +
                         "galley of type and scrambled it to make a type specimen book. It has survived not only five " +
                         "centuries, but also the leap into electronic typesetting, remaining essentially unchanged. " +
                         "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum " +
