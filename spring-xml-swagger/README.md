@@ -1,4 +1,4 @@
-## spring-xml-swaggwer
+## spring-xml-swagger
 An xml configured spring web mvc app with Swagger2 and Swagger UI
 
 ### Running
