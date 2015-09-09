@@ -5,6 +5,7 @@ buildscript {
 
   dependencies {
     classpath "com.github.adrianbk:gradle-jvmsrc-plugin:0.6.1"
+    classpath 'com.ofg:uptodate-gradle-plugin:1.6.0'
   }
 }
 
@@ -18,7 +19,7 @@ subprojects {
     packageName "springfoxdemo"
   }
   apply plugin: 'java'
-
+  apply plugin: 'com.ofg.uptodate'
 
   repositories {
     jcenter()

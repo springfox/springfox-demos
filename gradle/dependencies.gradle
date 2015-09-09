@@ -1,9 +1,9 @@
 ext {
   springVersion = "4.1.6.RELEASE"
-  springBootVersion = "1.2.3.RELEASE"
-  springfoxVersion = '2.0.4-SNAPSHOT'
+  springBootVersion = "1.2.5.RELEASE"
+  springfoxVersion = '2.2.3-SNAPSHOT'
   jacksonVersion = '2.5.2'
-  groovy = "2.4.3"
+  groovy = "2.4.4"
   spock = "1.0-groovy-2.4"
 
   libs = [
@@ -37,7 +37,7 @@ ext {
                   "org.spockframework:spock-core:${spock}",
                   "org.springframework:spring-test:${springVersion}",
                   "cglib:cglib-nodep:3.1",
-                  "org.objenesis:objenesis:2.1"
+                  "org.objenesis:objenesis:2.2"
           ],
           springfoxStaticDocs: [
                   "io.springfox:springfox-staticdocs:${springfoxVersion}"
