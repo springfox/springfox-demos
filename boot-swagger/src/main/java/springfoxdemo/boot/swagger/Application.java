@@ -51,6 +51,16 @@ public class Application {
     }
 
     @Bean
+    public Docket categoryApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("category-api")
+                .apiInfo(apiInfo())
+                .select()
+                .paths(categoryPaths())
+                .build();
+    }
+
+    @Bean
     public Docket multipartApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("multipart-api")
@@ -58,6 +68,10 @@ public class Application {
                 .select()
                 .paths(multipartPaths())
                 .build();
+    }
+
+    private Predicate<String> categoryPaths() {
+        return regex("/category.*");
     }
 
     private Predicate<String> multipartPaths() {
