@@ -8,13 +8,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.AuthorizationScopeBuilder;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.AuthorizationScope;
-import springfox.documentation.service.BasicAuth;
-import springfox.documentation.service.SecurityReference;
+import springfox.documentation.builders.ImplicitGrantBuilder;
+import springfox.documentation.builders.OAuthBuilder;
+import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger.web.ApiKeyVehicle;
+import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger1.annotations.EnableSwagger;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import springfox.petstore.controller.PetController;
@@ -22,10 +23,12 @@ import springfoxdemo.boot.swagger.web.FileUploadController;
 import springfoxdemo.boot.swagger.web.HomeController;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static com.google.common.base.Predicates.*;
-import static com.google.common.collect.Lists.*;
-import static springfox.documentation.builders.PathSelectors.*;
+import static com.google.common.base.Predicates.or;
+import static com.google.common.collect.Lists.newArrayList;
+import static springfox.documentation.builders.PathSelectors.ant;
+import static springfox.documentation.builders.PathSelectors.regex;
 
 @SpringBootApplication
 @EnableSwagger //Enable swagger 1.2 spec
@@ -47,7 +50,9 @@ public class Application {
                 .apiInfo(apiInfo())
                 .select()
                 .paths(petstorePaths())
-                .build();
+                .build()
+                .securitySchemes(newArrayList(oauth()))
+                .securityContexts(newArrayList(securityContext()));
     }
 
     @Bean
@@ -57,7 +62,8 @@ public class Application {
                 .apiInfo(apiInfo())
                 .select()
                 .paths(categoryPaths())
-                .build();
+                .build()
+                .enableUrlTemplating(true);
     }
 
     @Bean
@@ -138,4 +144,51 @@ public class Application {
                 .build();
     }
 
+    @Bean
+    SecurityContext securityContext() {
+        AuthorizationScope readScope = new AuthorizationScope("read:pets", "read your pets");
+        AuthorizationScope[] scopes = new AuthorizationScope[1];
+        scopes[0] = readScope;
+        SecurityReference securityReference = SecurityReference.builder()
+                .reference("petstore_auth")
+                .scopes(scopes)
+                .build();
+
+        return SecurityContext.builder()
+                .securityReferences(newArrayList(securityReference))
+                .forPaths(ant("/api/pet.*"))
+                .build();
+    }
+
+    @Bean
+    SecurityScheme oauth() {
+        return new OAuthBuilder()
+                .name("petstore_auth")
+                .grantTypes(grantTypes())
+                .scopes(scopes())
+                .build();
+    }
+
+    @Bean
+    SecurityScheme apiKey() {
+        return new ApiKey("api_key", "api_key", "header");
+    }
+
+    List<AuthorizationScope> scopes() {
+        return newArrayList(
+                new AuthorizationScope("write:pets", "modify pets in your account"),
+                new AuthorizationScope("read:pets", "read your pets"));
+    }
+
+    List<GrantType> grantTypes() {
+        GrantType grantType = new ImplicitGrantBuilder()
+                .loginEndpoint(new LoginEndpoint("http://petstore.swagger.io/api/oauth/dialog"))
+                .build();
+        return newArrayList(grantType);
+    }
+
+    @Bean
+    public SecurityConfiguration securityInfo() {
+        return new SecurityConfiguration("abc", "123", "pets", "petstore", "123", ApiKeyVehicle.HEADER, ",");
+    }
 }
