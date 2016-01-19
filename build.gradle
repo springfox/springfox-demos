@@ -1,5 +1,6 @@
 buildscript {
   repositories {
+    mavenLocal()
     jcenter()
   }
 
@@ -22,8 +23,9 @@ subprojects {
   apply plugin: 'com.ofg.uptodate'
 
   repositories {
+    mavenLocal()
     jcenter()
-    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+//    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
   }
 
 
@@ -37,5 +39,5 @@ subprojects {
 }
 
 wrapper {
-  gradleVersion = "2.4"
+  gradleVersion = "2.10"
 }

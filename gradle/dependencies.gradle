@@ -1,9 +1,9 @@
 ext {
-  springVersion = "4.1.6.RELEASE"
-  springBootVersion = "1.2.5.RELEASE"
-  springfoxVersion = '2.2.2'
-  jacksonVersion = '2.5.2'
-  groovy = "2.4.4"
+  springVersion = "4.1.8.RELEASE"
+  springBootVersion = "1.3.0.RELEASE"
+  springfoxVersion = '2.3.1'
+  jacksonVersion = '2.6.3'
+  groovy = "2.4.5"
   spock = "1.0-groovy-2.4"
 
   libs = [
@@ -26,6 +26,7 @@ ext {
           ],
           springfoxSwaggerUi: [
                   "io.springfox:springfox-swagger-ui:${springfoxVersion}"
+//                  "io.springfox:springfox-swagger-ui-rfc6570:0.9.4-SNAPSHOT"
           ],
           jackson           : [
                   "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}",
