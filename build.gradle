@@ -25,7 +25,7 @@ subprojects {
   repositories {
     mavenLocal()
     jcenter()
-//    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
   }
 
 

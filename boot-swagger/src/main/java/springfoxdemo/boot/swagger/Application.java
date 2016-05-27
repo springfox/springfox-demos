@@ -189,6 +189,6 @@ public class Application {
 
     @Bean
     public SecurityConfiguration securityInfo() {
-        return new SecurityConfiguration("abc", "123", "pets", "petstore", "123", ApiKeyVehicle.HEADER, ",");
+        return new SecurityConfiguration("abc", "123", "pets", "petstore", "123", ApiKeyVehicle.HEADER, "", ",");
     }
 }
