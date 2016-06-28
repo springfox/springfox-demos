@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 import springfox.petstore.model.Pet;
 
 import java.util.Map;
@@ -27,6 +28,16 @@ public class CategoryController {
 
   @RequestMapping(value = "/category/{id}", method = RequestMethod.POST)
   public ResponseEntity<Void> someOperation(@PathVariable long id, @RequestBody int userId) {
+    return ResponseEntity.ok(null);
+  }
+
+  @RequestMapping(value = "/category/{id}/{userId}", method = RequestMethod.POST)
+  public ResponseEntity<Void> ignoredParam(@PathVariable long id, @PathVariable @ApiIgnore int userId) {
+    return ResponseEntity.ok(null);
+  }
+
+  @RequestMapping(value = "/category/{id}/map", method = RequestMethod.POST)
+  public ResponseEntity<Void> map(@RequestParam Map<String, String> test) {
     return ResponseEntity.ok(null);
   }
 }

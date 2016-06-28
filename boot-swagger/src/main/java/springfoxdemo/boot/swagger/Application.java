@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import springfox.documentation.annotations.ApiIgnore;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.AuthorizationScopeBuilder;
 import springfox.documentation.builders.ImplicitGrantBuilder;
@@ -63,6 +64,7 @@ public class Application {
                 .select()
                 .paths(categoryPaths())
                 .build()
+                .ignoredParameterTypes(ApiIgnore.class)
                 .enableUrlTemplating(true);
     }
 
