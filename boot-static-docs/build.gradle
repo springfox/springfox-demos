@@ -4,9 +4,9 @@ buildscript {
   }
 
   dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
-    classpath "org.asciidoctor:asciidoctor-gradle-plugin:1.5.2"
-    classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.6'
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
+    classpath "org.asciidoctor:asciidoctor-gradle-plugin:1.5.3"
+    classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.11'
   }
 }
 

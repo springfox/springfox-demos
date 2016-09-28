@@ -4,7 +4,7 @@ buildscript {
   }
 
   dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
   }
 }
 
@@ -17,4 +17,5 @@ dependencies {
   compile libs.springfoxSwagger2
   compile "io.springfox:springfox-swagger1:${springfoxVersion}"
   compile libs.springfoxSwaggerUi
+  testCompile libs.test
 }

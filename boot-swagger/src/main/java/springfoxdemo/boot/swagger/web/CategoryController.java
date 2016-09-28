@@ -37,7 +37,7 @@ public class CategoryController {
   }
 
   @RequestMapping(value = "/category/{id}/map", method = RequestMethod.POST)
-  public ResponseEntity<Void> map(@RequestParam Map<String, String> test) {
+  public ResponseEntity<Void> map(@PathVariable String id, @RequestParam Map<String, String> test) {
     return ResponseEntity.ok(null);
   }
 }
