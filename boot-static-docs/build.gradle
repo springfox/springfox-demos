@@ -24,13 +24,16 @@ dependencies {
   testCompile libs.springfoxStaticDocs
 }
 
-def targetDocDir = "${project.buildDir}/asciidoc/generated/swagger_adoc"
+def asciiDocDir = "${project.buildDir}/asciidoc/generated"
+def jsondefDocDir = "${project.buildDir}/jsondef/generated"
 test {
-  systemProperty "asciiDocOutputDir", targetDocDir
+  systemProperty "asciiDocOutputDir", asciiDocDir
+  systemProperty "jsondefOutputDir", jsondefDocDir
 }
-asciidoctor.dependsOn test
+
+test.finalizedBy asciidoctor
 
 asciidoctor {
-  sourceDir = file(targetDocDir)
+  sourceDir = file(asciiDocDir)
   backends = ['html5', 'pdf']
 }

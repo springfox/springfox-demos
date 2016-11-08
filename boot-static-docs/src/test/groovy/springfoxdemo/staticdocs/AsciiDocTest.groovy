@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 import springfox.documentation.staticdocs.Swagger2MarkupResultHandler
+import springfox.documentation.staticdocs.SwaggerResultHandler
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
@@ -22,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         classes = Application)
 @WebAppConfiguration
 @TestExecutionListeners([DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener])
-class StaticDocsTest extends spock.lang.Specification {
+class AsciiDocTest extends spock.lang.Specification {
 
   @Autowired
   WebApplicationContext context;
@@ -32,8 +33,7 @@ class StaticDocsTest extends spock.lang.Specification {
   def setup() {
     this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build()
   }
-
-
+    
   def "generates the petstore api asciidoc"() {
     setup:
       String outDir = System.getProperty('asciiDocOutputDir', 'build/aciidoc')
