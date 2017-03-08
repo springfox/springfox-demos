@@ -22,6 +22,7 @@ dependencies {
   compile libs.springfoxSwaggerUi
   testCompile libs.test
   testCompile libs.springfoxStaticDocs
+  testCompile 'io.swagger:swagger-parser:1.0.26'
 }
 
 def targetDocDir = "${project.buildDir}/asciidoc/generated/swagger_adoc"

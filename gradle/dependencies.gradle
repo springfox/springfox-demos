@@ -1,9 +1,9 @@
 ext {
-  springVersion = "4.3.3.RELEASE"
-  springBootVersion = "1.4.1.RELEASE"
-  springfoxVersion = '2.6.1-SNAPSHOT'
-  jacksonVersion = '2.7.4'
-  groovy = "2.4.5"
+  springVersion = "4.3.7.RELEASE"
+  springBootVersion = "1.5.2.RELEASE"
+  springfoxVersion = '2.7.0-SNAPSHOT'
+  jacksonVersion = '2.8.6'
+  groovy = "2.4.8"
   spock = "1.0-groovy-2.4"
 
   libs = [
@@ -42,7 +42,7 @@ ext {
                   "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
           ],
           springfoxStaticDocs: [
-                  "io.springfox:springfox-staticdocs:${springfoxVersion}"
+                  "io.springfox:springfox-staticdocs:2.6.1"
           ],
   ]
 }
