@@ -11,7 +11,14 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.AuthorizationScopeBuilder;
 import springfox.documentation.builders.ImplicitGrantBuilder;
 import springfox.documentation.builders.OAuthBuilder;
-import springfox.documentation.service.*;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
+import springfox.documentation.service.AuthorizationScope;
+import springfox.documentation.service.BasicAuth;
+import springfox.documentation.service.GrantType;
+import springfox.documentation.service.LoginEndpoint;
+import springfox.documentation.service.SecurityReference;
+import springfox.documentation.service.SecurityScheme;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -26,10 +33,9 @@ import springfoxdemo.boot.swagger.web.HomeController;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.google.common.base.Predicates.or;
-import static com.google.common.collect.Lists.newArrayList;
-import static springfox.documentation.builders.PathSelectors.ant;
-import static springfox.documentation.builders.PathSelectors.regex;
+import static com.google.common.base.Predicates.*;
+import static com.google.common.collect.Lists.*;
+import static springfox.documentation.builders.PathSelectors.*;
 
 @SpringBootApplication
 @EnableSwagger //Enable swagger 1.2 spec
