@@ -2,7 +2,7 @@
 Springfox demo applications 
 
 
-#IDE
+# IDE
 First build
 ```
 ./gradlew idea
