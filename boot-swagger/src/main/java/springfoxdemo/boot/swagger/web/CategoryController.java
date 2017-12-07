@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 import springfox.petstore.model.Pet;
 
+import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Optional;
 
 import static com.google.common.collect.Maps.*;
 
@@ -39,5 +41,10 @@ public class CategoryController {
   @RequestMapping(value = "/category/{id}/map", method = RequestMethod.POST)
   public ResponseEntity<Void> map(@PathVariable String id, @RequestParam Map<String, String> test) {
     return ResponseEntity.ok(null);
+  }
+
+  @RequestMapping(value = "/category/date", method = RequestMethod.GET)
+  public ResponseEntity<Category> date(@RequestParam(name = "time", required = false) Optional<LocalDateTime> time) {
+    return ResponseEntity.ok(Category.ONE);
   }
 }
