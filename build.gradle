@@ -43,3 +43,48 @@ subprojects {
 wrapper {
   gradleVersion = "2.10"
 }
+
+task build {
+  buildscript {
+    repositories {
+      mavenLocal()
+      jcenter()
+    }
+
+  }
+
+
+  apply from: "$rootDir/gradle/dependencies.gradle"
+
+  subprojects {
+    apply plugin: 'com.github.adrianbk.jvmsrc'
+    apply plugin: 'com.github.ben-manes.versions'
+
+    jvmsrc {
+      packageName "springfoxdemo"
+    }
+    apply plugin: 'java'
+    apply plugin: 'com.ofg.uptodate'
+
+    repositories {
+      mavenLocal()
+      jcenter()
+      maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+    }
+
+
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+
+    configurations.all {
+      //Dont cache snapshots
+      resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
+  }
+
+  wrapper {
+    gradleVersion = "2.10"
+  }
+
+}
+task stage(dependsOn: ['build'])
