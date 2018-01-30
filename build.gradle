@@ -7,7 +7,7 @@ buildscript {
   dependencies {
     classpath "com.github.adrianbk:gradle-jvmsrc-plugin:0.6.1"
     classpath 'com.ofg:uptodate-gradle-plugin:1.6.0'
-    classpath 'com.github.ben-manes:gradle-versions-plugin:0.13.0'
+    classpath 'com.github.ben-manes:gradle-versions-plugin:0.15.0'
   }
 }
 
@@ -38,8 +38,4 @@ subprojects {
     //Dont cache snapshots
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
   }
-}
-
-wrapper {
-  gradleVersion = "2.10"
 }
