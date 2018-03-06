@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 import springfox.petstore.model.Pet;
 
+import java.util.List;
 import java.util.Map;
 
 import static com.google.common.collect.Maps.*;
@@ -38,6 +39,11 @@ public class CategoryController {
 
   @RequestMapping(value = "/category/{id}/map", method = RequestMethod.POST)
   public ResponseEntity<Void> map(@PathVariable String id, @RequestParam Map<String, String> test) {
+    return ResponseEntity.ok(null);
+  }
+
+  @RequestMapping(value = "/categories", method = RequestMethod.POST)
+  public ResponseEntity<List<Category>> map(String [] categories) {
     return ResponseEntity.ok(null);
   }
 }

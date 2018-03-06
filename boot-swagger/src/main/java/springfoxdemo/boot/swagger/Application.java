@@ -88,7 +88,7 @@ public class Application {
     }
 
     private Predicate<String> categoryPaths() {
-        return regex("/category.*");
+        return or(regex("/category.*"), regex("/category"), regex("/categories"));
     }
 
     private Predicate<String> multipartPaths() {
