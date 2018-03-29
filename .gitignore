@@ -8,3 +8,5 @@ gradle-app.setting
 !gradle-wrapper.jar
 .java-version
 .idea
+*.iml
+boot-swagger/out

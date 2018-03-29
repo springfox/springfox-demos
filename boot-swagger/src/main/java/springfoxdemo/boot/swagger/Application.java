@@ -6,25 +6,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.annotations.ApiIgnore;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.AuthorizationScopeBuilder;
-import springfox.documentation.builders.ImplicitGrantBuilder;
-import springfox.documentation.builders.OAuthBuilder;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.ApiKey;
-import springfox.documentation.service.AuthorizationScope;
-import springfox.documentation.service.BasicAuth;
-import springfox.documentation.service.GrantType;
-import springfox.documentation.service.LoginEndpoint;
-import springfox.documentation.service.SecurityReference;
-import springfox.documentation.service.SecurityScheme;
+import springfox.documentation.builders.*;
+import springfox.documentation.schema.ModelRef;
+import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.OperationBuilderPlugin;
+import springfox.documentation.spi.service.contexts.OperationContext;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger.common.SwaggerPluginSupport;
 import springfox.documentation.swagger.web.ApiKeyVehicle;
 import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger1.annotations.EnableSwagger;
@@ -33,12 +30,16 @@ import springfox.petstore.controller.PetController;
 import springfoxdemo.boot.swagger.web.FileUploadController;
 import springfoxdemo.boot.swagger.web.HomeController;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-import static com.google.common.base.Predicates.*;
-import static com.google.common.collect.Lists.*;
-import static springfox.documentation.builders.PathSelectors.*;
+import static com.google.common.base.Predicates.or;
+import static com.google.common.collect.Lists.newArrayList;
+import static springfox.documentation.builders.PathSelectors.ant;
+import static springfox.documentation.builders.PathSelectors.regex;
 
 @SpringBootApplication
 @EnableSwagger //Enable swagger 1.2 spec
@@ -51,6 +52,48 @@ import static springfox.documentation.builders.PathSelectors.*;
 public class Application {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
+    }
+
+    @Component
+    @Order(SwaggerPluginSupport.SWAGGER_PLUGIN_ORDER + 1000)
+    public class ClientRequestControllerMissingVersionOperationPlugin implements OperationBuilderPlugin {
+
+        @Override
+        public void apply(OperationContext operationContext) {
+            operationContext
+                    .findControllerAnnotation(RequestMapping.class)
+                    .toJavaUtil()
+                    .filter(this::isVersionedController)
+                    .filter(isMissingVersionParam(operationContext))
+                    .ifPresent(r -> operationContext.operationBuilder().parameters(newVersionParam()));
+
+        }
+
+        @NotNull
+        private List<Parameter> newVersionParam() {
+            return Collections.singletonList(new ParameterBuilder()
+                    .required(true)
+                    .description("API version")
+                    .parameterType("path")
+                    .name("version")
+                    .parameterType("string")
+                    .modelRef(new ModelRef("string"))
+                    .build());
+        }
+
+        @NotNull
+        private java.util.function.Predicate<RequestMapping> isMissingVersionParam(OperationContext operationContext) {
+            return requestMapping -> operationContext.getParameters().stream().noneMatch(resolvedMethodParameter -> resolvedMethodParameter.defaultName().or("").equals("version"));
+        }
+
+        private boolean isVersionedController(RequestMapping requestMapping) {
+            return Arrays.stream(requestMapping.value()).anyMatch(path -> path.matches("/\\{version}"));
+        }
+
+        @Override
+        public boolean supports(DocumentationType documentationType) {
+            return true;
+        }
     }
 
     @Bean
@@ -88,7 +131,7 @@ public class Application {
     }
 
     private Predicate<String> categoryPaths() {
-        return or(regex("/category.*"), regex("/category"), regex("/categories"));
+        return or(regex("/category.*"), regex("/category"), regex("/categories"), regex("/\\{version\\}/category.*"));
     }
 
     private Predicate<String> multipartPaths() {
