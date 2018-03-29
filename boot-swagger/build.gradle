@@ -17,5 +17,6 @@ dependencies {
   compile libs.springfoxSwagger2
   compile "io.springfox:springfox-swagger1:${springfoxVersion}"
   compile libs.springfoxSwaggerUi
+  compile group: 'com.google.guava', name: 'guava', version: '22.0'
   testCompile libs.test
 }
