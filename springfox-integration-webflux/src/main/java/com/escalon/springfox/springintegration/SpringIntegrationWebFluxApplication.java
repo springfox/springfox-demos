@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.dsl.IntegrationFlows;
-import org.springframework.integration.http.dsl.Http;
 import org.springframework.integration.webflux.dsl.WebFlux;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,10 +14,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebFlux;
 
 @SpringBootApplication
 @EnableSwagger2WebFlux
-public class SpringIntegrationApplication {
+public class SpringIntegrationWebFluxApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringIntegrationApplication.class, args);
+        SpringApplication.run(SpringIntegrationWebFluxApplication.class, args);
     }
 
     @Bean

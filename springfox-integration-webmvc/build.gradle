@@ -6,8 +6,8 @@ version = '0.0.1-SNAPSHOT'
 
 description = """spring-integration"""
 
-sourceCompatibility = 1.5
-targetCompatibility = 1.5
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }

@@ -16,10 +16,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 @SpringBootApplication
 @EnableSwagger2WebMvc
 @RestController
-public class SpringIntegrationApplication {
+public class SpringIntegrationWebMvcApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringIntegrationApplication.class, args);
+        SpringApplication.run(SpringIntegrationWebMvcApplication.class, args);
     }
 
 
