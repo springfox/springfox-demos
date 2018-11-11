@@ -15,9 +15,8 @@ tasks.withType(JavaCompile) {
 
 
 repositories {
-        
-     maven { url "https://artifactory.cc.azd.cloud.allianz/artifactory/libs-release" }
-     maven { url "https://artifactory.cc.azd.cloud.allianz/artifactory/libs-snapshot" }
+     mavenLocal()
+     mavenCentral()
 }
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version:'2.0.6.RELEASE'
