@@ -12,7 +12,24 @@ tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
 
+jar {
+    dependsOn 'test'
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src/main/java']
+            }
+            resources {
+                srcDirs = ["target/generated-snippets", "src/main/resources"]
+                // include "**/*.springfox"
+            }
+        }
+    }
+}
 
+clean {
+    delete 'out'     // interpreted relative to the project directory
+}
 
 repositories {
      mavenLocal()

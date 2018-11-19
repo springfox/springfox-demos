@@ -1,5 +1,9 @@
 package com.escalon.springfox.springintegration;
 
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Example;
+import io.swagger.annotations.ExampleProperty;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -64,6 +68,10 @@ public class SpringIntegrationWebMvcApplication {
                 .get();
     }
 
+    @ApiResponses(
+            @ApiResponse(code = 200, message = "OK",
+                    examples = @Example(@ExampleProperty(mediaType = "application/json",
+                            value = "{\"gnarf\": \"dragons\"}"))))
     @PostMapping("/conversion/controller")
     public @ResponseBody
     Baz convert(@RequestBody Baz baz) {
@@ -84,6 +92,8 @@ public class SpringIntegrationWebMvcApplication {
 
     public static class Foo {
         private String bar;
+        private boolean foo = false;
+        private int count = 3;
 
         public Foo() {
 
@@ -99,6 +109,22 @@ public class SpringIntegrationWebMvcApplication {
 
         public void setBar(String bar) {
             this.bar = bar;
+        }
+
+        public boolean isFoo() {
+            return foo;
+        }
+
+        public void setFoo(boolean foo) {
+            this.foo = foo;
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+        public void setCount(int count) {
+            this.count = count;
         }
     }
 
