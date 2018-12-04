@@ -1,0 +1,52 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.escalon.springfox'
+version = '0.0.1-SNAPSHOT'
+
+description = """spring-integration"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+jar {
+    dependsOn 'test'
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src/main/java']
+            }
+            resources {
+                srcDirs = ["target/generated-snippets", "src/main/resources"]
+                // include "**/*.springfox"
+            }
+        }
+    }
+}
+
+clean {
+    delete 'out'     // interpreted relative to the project directory
+}
+
+repositories {
+     mavenLocal()
+     mavenCentral()
+}
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version:'2.0.6.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-integration', version:'2.0.6.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.0.6.RELEASE'
+    compile(group: 'org.springframework.integration', name: 'spring-integration-http', version:'5.0.9.RELEASE') {
+exclude(module: 'commons-logging')
+exclude(module: 'commons-logging-api')
+    }
+    compile group: 'io.springfox', name: 'springfox-swagger2', version:'3.0.0-SNAPSHOT'
+    compile group: 'io.springfox', name: 'springfox-spring-webmvc', version:'3.0.0-SNAPSHOT'
+    compile group: 'io.springfox', name: 'springfox-spring-integration-webmvc', version:'3.0.0-SNAPSHOT'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version:'3.0.0-SNAPSHOT'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'2.0.6.RELEASE'
+    testCompile group: 'org.springframework.restdocs', name: 'spring-restdocs-mockmvc', version:'2.0.2.RELEASE'
+}
