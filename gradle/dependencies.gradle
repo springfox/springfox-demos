@@ -1,7 +1,7 @@
 ext {
   springVersion = "5.2.7.RELEASE"
   springBootVersion = "2.3.1.RELEASE"
-  springfoxVersion = '2.9.2'
+  springfoxVersion = '3.0.0-SNAPSHOT'
   jacksonVersion = '2.11.0'
   groovy = "3.0.4"
   spock = "2.0-M3-groovy-3.0"
@@ -19,10 +19,11 @@ ext {
           ],
 
           springfoxPetstore : [
-                  "io.springfox:springfox-petstore:${springfoxVersion}"
+                  "io.springfox:springfox-petstore:2.9.2"
           ],
           springfoxSwagger2 : [
-                  "io.springfox:springfox-swagger2:${springfoxVersion}"
+              "io.springfox:springfox-spring-webmvc:${springfoxVersion}",
+              "io.springfox:springfox-swagger2:${springfoxVersion}"
           ],
           springfoxSwaggerUi: [
                   "io.springfox:springfox-swagger-ui:${springfoxVersion}"
