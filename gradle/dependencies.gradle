@@ -22,6 +22,7 @@ ext {
                   "io.springfox:springfox-petstore:2.9.2"
           ],
           springfoxSwagger2 : [
+              "io.springfox:springfox-spring-web:${springfoxVersion}",
               "io.springfox:springfox-spring-webmvc:${springfoxVersion}",
               "io.springfox:springfox-swagger2:${springfoxVersion}"
           ],
