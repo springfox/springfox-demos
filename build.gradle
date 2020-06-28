@@ -30,8 +30,8 @@ subprojects {
     maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
   }
 
-  sourceCompatibility = 1.8
-  targetCompatibility = 1.8
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
 
   configurations.all {
     //Dont cache snapshots
