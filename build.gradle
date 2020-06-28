@@ -1,6 +1,5 @@
 buildscript {
   repositories {
-    mavenLocal()
     jcenter()
   }
 
@@ -14,9 +13,16 @@ buildscript {
 apply from: "$rootDir/gradle/dependencies.gradle"
 
 subprojects {
+  apply plugin:"idea"
   apply plugin: 'com.github.ben-manes.versions'
   apply plugin: 'java'
   apply plugin: 'com.ofg.uptodate'
+
+  idea {
+    module {
+      downloadSources = true
+    }
+  }
 
   repositories {
     mavenLocal()

@@ -12,10 +12,6 @@ tasks.withType(JavaCompile) {
   options.encoding = 'UTF-8'
 }
 
-repositories {
-  mavenLocal()
-  mavenCentral()
-}
 dependencies {
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.3.1.RELEASE'
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-integration', version: '2.3.1.RELEASE'
