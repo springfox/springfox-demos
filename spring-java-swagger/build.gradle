@@ -7,7 +7,7 @@ apply plugin: 'war'
 dependencies {
   compile libs.spring
   compile libs.jackson
-  compile libs.springfoxSwagger2
+  compile libs.springfoxOpenApi
   compile libs.springfoxSwaggerUi
   compile 'org.slf4j:slf4j-simple:1.7.30'
   testCompile libs.test

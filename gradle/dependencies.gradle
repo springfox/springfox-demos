@@ -12,12 +12,10 @@ ext {
                   "org.springframework:spring-core:$springVersion",
                   "org.springframework:spring-web:$springVersion",
                   "org.springframework:spring-webmvc:$springVersion"
-
           ],
           springBoot        : [
                   "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
           ],
-
           springfoxPetstore : [
                   "io.springfox:springfox-petstore:2.10.5"
           ],
@@ -26,9 +24,13 @@ ext {
               "io.springfox:springfox-spring-webmvc:${springfoxVersion}",
               "io.springfox:springfox-swagger2:${springfoxVersion}"
           ],
+          springfoxOpenApi : [
+              "io.springfox:springfox-spring-web:${springfoxVersion}",
+              "io.springfox:springfox-spring-webmvc:${springfoxVersion}",
+              "io.springfox:springfox-oas:${springfoxVersion}"
+          ],
           springfoxSwaggerUi: [
                   "io.springfox:springfox-swagger-ui:${springfoxVersion}"
-//                  "io.springfox.ui:springfox-swagger-ui-rfc6570:1.0.0"
           ],
           jackson           : [
                   "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}",
