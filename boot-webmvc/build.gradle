@@ -10,6 +10,8 @@ sourceCompatibility = '1.8'
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
   implementation "io.springfox:springfox-boot-starter:3.0.0-SNAPSHOT"
+  implementation 'org.springframework.security:spring-security-web'
+  implementation 'org.springframework.security:spring-security-config'
   testImplementation('org.springframework.boot:spring-boot-starter-test') {
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
