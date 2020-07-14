@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger.web.SecurityConfigurationBuilder;
 
@@ -31,11 +33,15 @@ public class BootWebmvcApplication {
       return ResponseEntity.ok("Value " + count);
     }
   }
-
   @Bean
   public SecurityConfiguration securityConfiguration() {
     return SecurityConfigurationBuilder.builder()
         .enableCsrfSupport(true)
         .build();
+  }
+
+  @Bean
+  public Docket docket() {
+    return new Docket(DocumentationType.SWAGGER_2);
   }
 }
