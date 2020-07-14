@@ -17,9 +17,9 @@ dependencies {
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-integration', version: '2.3.1.RELEASE'
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.3.1.RELEASE'
   compile group: 'org.springframework.integration', name: 'spring-integration-webflux', version: '2.3.1.RELEASE'
-  compile group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0-SNAPSHOT'
-  compile group: 'io.springfox', name: 'springfox-spring-webflux', version: '3.0.0-SNAPSHOT'
-  compile group: 'io.springfox', name: 'springfox-spring-integration-webflux', version: '3.0.0-SNAPSHOT'
-  compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0-SNAPSHOT'
+  compile group: 'io.springfox', name: 'springfox-swagger2', version: springfoxVersion
+  compile group: 'io.springfox', name: 'springfox-spring-webflux', version: springfoxVersion
+  compile group: 'io.springfox', name: 'springfox-spring-integration-webflux', version: springfoxVersion
+  compile group: 'io.springfox', name: 'springfox-swagger-ui', version: springfoxVersion
   testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.1.RELEASE'
 }
