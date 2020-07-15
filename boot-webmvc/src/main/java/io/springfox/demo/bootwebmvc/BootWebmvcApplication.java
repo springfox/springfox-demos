@@ -40,8 +40,9 @@ public class BootWebmvcApplication {
         .build();
   }
 
-  @Bean
-  public Docket docket() {
-    return new Docket(DocumentationType.SWAGGER_2);
-  }
+//  NOTE: Uncomment to personalize. OAS_30 (OpenAPI is the default spec version)
+//  @Bean
+//  public Docket docket() {
+//    return new Docket(DocumentationType.SWAGGER_2);
+//  }}
 }
