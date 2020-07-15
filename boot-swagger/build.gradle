@@ -9,6 +9,7 @@ dependencies {
   compile libs.springfoxPetstore
   compile libs.springfoxSwagger2
   compile "io.springfox:springfox-swagger1:${springfoxVersion}"
+  compile "io.springfox:springfox-oas:${springfoxVersion}"
   compile libs.springfoxSwaggerUi
   testCompile libs.test
 }

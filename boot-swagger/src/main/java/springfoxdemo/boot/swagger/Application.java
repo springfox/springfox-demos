@@ -5,14 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.annotations.ApiIgnore;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.AuthorizationScopeBuilder;
 import springfox.documentation.builders.ImplicitGrantBuilder;
 import springfox.documentation.builders.OAuthBuilder;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
@@ -25,14 +23,16 @@ import springfox.documentation.service.SecurityScheme;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger.web.ApiKeyVehicle;
 import springfox.documentation.swagger.web.SecurityConfiguration;
+import springfox.documentation.swagger.web.SecurityConfigurationBuilder;
 import springfox.documentation.swagger1.annotations.EnableSwagger;
-import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import springfox.petstore.controller.PetController;
-import springfoxdemo.boot.swagger.web.FileUploadController;
+import springfox.petstore.controller.PetStoreResource;
+import springfox.petstore.controller.UserController;
 import springfoxdemo.boot.swagger.web.HomeController;
 
+import javax.print.Doc;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -42,15 +42,26 @@ import static springfox.documentation.builders.PathSelectors.*;
 
 @SpringBootApplication
 @EnableSwagger //Enable swagger 1.2 spec
-@EnableSwagger2WebMvc //Enable swagger 2.0 spec
-@ComponentScan(basePackageClasses = {
-    PetController.class,
-    HomeController.class,
-    FileUploadController.class
-})
+@EnableSwagger2 //Enable swagger 2.0 spec
+@EnableOpenApi //Enable open api 3.0.3 spec
 public class Application {
   public static void main(String[] args) {
     ApplicationContext ctx = SpringApplication.run(Application.class, args);
+  }
+
+  @Bean
+  public PetController petController() {
+    return new PetController();
+  }
+
+  @Bean
+  public PetStoreResource petStoreController() {
+    return new PetStoreResource();
+  }
+
+  @Bean
+  public UserController userController() {
+    return new UserController();
   }
 
   @Bean
@@ -88,13 +99,13 @@ public class Application {
   }
 
   private Predicate<String> categoryPaths() {
-    return regex("/category.*")
-        .or(regex("/category")
-            .or(regex("/categories")));
+    return regex(".*/category.*")
+        .or(regex(".*/category")
+            .or(regex(".*/categories")));
   }
 
   private Predicate<String> multipartPaths() {
-    return regex("/upload.*");
+    return regex(".*/upload.*");
   }
 
   @Bean
@@ -124,10 +135,19 @@ public class Application {
         .build();
   }
 
+  @Bean
+  public Docket openApiPetStore() {
+    return new Docket(DocumentationType.OAS_30)
+        .groupName("open-api-pet-store")
+        .select()
+        .paths(petstorePaths())
+        .build();
+  }
+
   private Predicate<String> petstorePaths() {
-    return regex("/api/pet.*")
-        .or(regex("/api/user.*")
-            .or(regex("/api/store.*")));
+    return regex(".*/api/pet.*")
+        .or(regex(".*/api/user.*")
+            .or(regex(".*/api/store.*")));
   }
 
   private ApiInfo apiInfo() {
@@ -161,7 +181,7 @@ public class Application {
 
     return SecurityContext.builder()
         .securityReferences(Collections.singletonList(securityReference))
-        .forPaths(ant("/api/pet.*"))
+        .forPaths(ant(".*/api/pet.*"))
         .build();
   }
 
@@ -194,21 +214,12 @@ public class Application {
 
   @Bean
   public SecurityConfiguration securityInfo() {
-    return new SecurityConfiguration("abc", "123", "pets", "petstore", "123", ApiKeyVehicle.HEADER, "", ",");
-  }
-
-  @Bean
-  public WebMvcConfigurer corsConfigurer() {
-    return new WebMvcConfigurerAdapter() {
-      @Override
-      public void addCorsMappings(CorsRegistry registry) {
-        registry
-            .addMapping("/api/pet")
-            .allowedOrigins("http://editor.swagger.io");
-        registry
-            .addMapping("/v2/api-docs.*")
-            .allowedOrigins("http://editor.swagger.io");
-      }
-    };
+    return SecurityConfigurationBuilder.builder()
+        .clientId("abc")
+        .clientSecret("123")
+        .realm("pets")
+        .appName("petstore")
+        .scopeSeparator(",")
+        .build();
   }
 }
