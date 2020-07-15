@@ -16,9 +16,8 @@
     <context:component-scan base-package="springfox.petstore.controller"/>
 
     <!-- Enables swgger ui-->
-    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
-    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+    <mvc:resources mapping="/swagger-ui/**" location="classpath:/META-INF/resources/webjars/springfox-swagger-ui/"/>
 
     <!-- Include a swagger configuration-->
-    <bean name="/applicationSwaggerConfig" class="springfoxdemo.xml.swagger.ApplicationSwaggerConfig"/>
+    <bean name="applicationSwaggerConfig" class="springfoxdemo.xml.swagger.ApplicationSwaggerConfig"/>
 </beans>

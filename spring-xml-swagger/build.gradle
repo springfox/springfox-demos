@@ -10,5 +10,6 @@ dependencies {
   compile libs.springfoxPetstore
   compile libs.springfoxSwagger2
   compile libs.springfoxSwaggerUi
+  compile 'org.slf4j:slf4j-simple:1.7.30'
   testCompile libs.test
 }
