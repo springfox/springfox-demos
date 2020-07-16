@@ -18,5 +18,5 @@ First build
 | spring-java-swagger  | demonstrates manual java configuration api 3.0.3 support on an non-boot app |
 | spring-xml-swagger  | demonstrates manual xml configuration api 3.0.3 support on an non-boot app |
 | spring-integration-webflux  | demonstrates spring integration support on webflux project |
-| spring-integration-webflux  | demonstrates spring integration support on webmvc project|
+| spring-integration-webmvc  | demonstrates spring integration support on webmvc project|
 
