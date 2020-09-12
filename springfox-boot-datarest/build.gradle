@@ -1,0 +1,63 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
+    }
+}
+ext {
+    junitVersion='5.3.1'
+    junit4Version='4.12'
+    springVersion='5.1.2.RELEASE'
+    springBootVersion='2.1.0.RELEASE'
+    liquibaseVersion = '3.6.2'
+    h2DatabaseVersion = '1.4.197'
+    swaggerVersion = '3.0.0-SNAPSHOT'
+    gsonVersion = '2.8.5'
+}
+
+apply plugin: 'java'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+group = 'com.escalon.springfox'
+version = '0.0.1-SNAPSHOT'
+
+description = """Springfox-data-rest integration with latest spring boot to h2 database"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation("junit:junit:${junit4Version}")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:${junitVersion}")
+    testImplementation("com.google.code.gson:gson:${gsonVersion}")
+
+    //Spring Dependencies
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+
+    implementation("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+
+
+    implementation("org.liquibase:liquibase-core:${liquibaseVersion}")
+    implementation("com.h2database:h2:${h2DatabaseVersion}")
+
+    implementation("io.springfox:springfox-swagger-ui:${swaggerVersion}")
+    implementation("io.springfox:springfox-swagger2:${swaggerVersion}")
+    implementation("io.springfox:springfox-data-rest:${swaggerVersion}")
+}
