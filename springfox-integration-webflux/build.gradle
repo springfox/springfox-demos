@@ -14,7 +14,7 @@ tasks.withType(JavaCompile) {
 
 dependencies {
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.3.1.RELEASE'
-  compile group: 'org.springframework.boot', name: 'spring-boot-starter-integration', version: '2.3.1.RELEASE'
+  compile group: 'org.springframework.boot', name: 'spring-boot-starter-integration', version: '2.4.1'
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.3.1.RELEASE'
   compile group: 'org.springframework.integration', name: 'spring-integration-webflux', version: '5.3.2.RELEASE'
   compile group: 'io.springfox', name: 'springfox-swagger2', version: springfoxVersion
