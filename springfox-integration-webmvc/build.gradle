@@ -43,6 +43,6 @@ dependencies {
   compile group: 'io.springfox', name: 'springfox-spring-webmvc', version: springfoxVersion
   compile group: 'io.springfox', name: 'springfox-spring-integration-webmvc', version: springfoxVersion
   compile group: 'io.springfox', name: 'springfox-swagger-ui', version: springfoxVersion
-  testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.1.RELEASE'
+  testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.4.4'
   testCompile group: 'org.springframework.restdocs', name: 'spring-restdocs-mockmvc', version: '2.0.2.RELEASE'
 }
