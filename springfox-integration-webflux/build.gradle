@@ -21,5 +21,5 @@ dependencies {
   compile group: 'io.springfox', name: 'springfox-spring-webflux', version: springfoxVersion
   compile group: 'io.springfox', name: 'springfox-spring-integration-webflux', version: springfoxVersion
   compile group: 'io.springfox', name: 'springfox-swagger-ui', version: springfoxVersion
-  testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.1.RELEASE'
+  testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.4.6'
 }
