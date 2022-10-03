@@ -4,7 +4,7 @@ A spring boot application with OpenAPI 3.0 api documentation enabled
  - Demonstrates using context path of `/mvc`
  - Demonstrates use of path for swagger-ui @ `/documentation`
 ```
-./gradlew boot-webflux:bootRun
+./gradlew boot-webmvc:bootRun
 ```
 
 ## Paths
